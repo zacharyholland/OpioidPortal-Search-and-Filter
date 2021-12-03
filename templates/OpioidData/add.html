@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form name="form" method="post" action="{% url 'add' %}">
+    {% csrf_token %}
+    <label for="npi">NPI:</label>
+    <input type="text" id="npi" name="npi">
+    <br><br>
+    <label for="Fname">First Name:</label>
+    <input type="text" name="Fname" id="Fname" autofocus>
+    <br><br>
+    <label for="Lname">Last Name:</label>
+    <input type="text" name="Lname" id="Lname">
+    <br><br>
+    <label for="Gender">Gender:</label>
+    <input type="text" name="Gender" id="Gender">
+    <br><br>
+    <label for="State">State:</label>
+    <input type="text" name="State" id="State">
+    <br><br>
+    <button type="submit">Create</button>
+</form>
+{% endblock %}

@@ -1,0 +1,275 @@
+body {
+    margin:0;
+    padding:0;
+    background: #FFFFFF;
+}
+
+.section {
+    
+    background: #FFFFFF;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    margin: 0px;
+    border-spacing:0; 
+    display: flex;
+    justify-content: center;
+
+}
+.section1 {
+    
+    
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.row {
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.column {
+    width: 50%;
+    align-items: left;
+}
+
+.column2 {
+    width: 50%;
+    align-items: left;
+    display: flex;
+    justify-content: right;
+}
+
+.inner-column {
+    padding-left:20px;
+    padding-right: 20px;
+}
+
+.img {
+    width: 50%;
+}
+.img2 {
+    width: 100%;
+}
+
+.button {
+    background: #014ED5;
+    border-radius: 5px;
+    border-color:#FFFFFF;
+    border-width: 0px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    padding-top: 10;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.03em;
+
+    color: #FFFFFF;
+    }
+
+.hero-section {
+    padding-top: 50px;
+    margin: 0px;
+    border-spacing:0; 
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(96.57deg, #E8F1FF 26.99%, #F3F8FF 79.73%);
+
+
+}
+
+h1 {
+    font-family: tt norms;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: 0.03em;
+    color: #0B2346;
+}
+
+h2 {
+    font-family: tt norms;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 47px;
+    text-align: center;
+    letter-spacing: 0.03em;
+    color: #0B2346;
+     
+}
+
+h4 {
+    font-family: TT Norms;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    font-family: TT Norms;
+    line-height: 33px;
+    letter-spacing: 0.03em;
+}
+
+p {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 0.03em;
+    color: #58595B;
+}
+
+.body-section {
+    background: linear-gradient(180deg, #FAFCFE 0%, #FFFFFF 100%);;
+    padding: 25px;
+    margin: 0px;
+    border-spacing:0; 
+    
+
+}
+
+.container {
+    width: 100%;
+    
+    }
+
+.container1 {
+
+    width: 100%;   
+    
+}
+
+.container2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.columnbox {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 65%;
+    align-items: center;
+    padding: 50px;
+    text-align: center;
+}
+
+h5 {
+    font-family: tt norms;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    text-align: center;
+    letter-spacing: 0.03em;
+    color: #0B2346;
+    margin: 0px;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+h6 {
+    margin: 0px;
+    font-family: 'open sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.03em;
+    color: #000000;
+}
+
+/* css for footer */
+.footer1 {
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top: 2px solid #5396FF;
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+.outer-footer-column {
+    display: flex;
+    justify-content: center;
+    width: 33%
+}
+
+.navbar {
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 2;
+    }
+
+   /* Styling for side menu */
+
+    /* The sidebar menu */
+    .sidenav {
+        height: 100%; /* Full-height: remove this if you want "auto" height */
+        width: 280px; /* Set the width of the sidebar */
+        position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+        z-index: 1; /* Stay on top */
+        top: 100; /* Stay at the top */
+        left: 0;
+        background: #F3F8FF;
+        box-shadow: 0px 4px 20px rgba(58, 59, 61, 0.05);    
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 20px;
+      
+      }
+      
+      /* The navigation menu links */
+      .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #818181;
+        display: block;
+        font-family: 'open sans';
+      }
+      
+      /* When you mouse over the navigation links, change their color */
+      .sidenav a:hover {
+        opacity: 80%;
+      }
+      
+      /* Style page content */
+      .main {
+        margin-left: 280px; /* Same as the width of the sidebar */
+        padding: 0px 10px;
+      }
+      
+      /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+      @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+      }

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<form name="form" method="post" action="{% url 'update' %}">
+    {% csrf_token %}
+    <input type="hidden" id="npi" name="npi" value="{{record.npi}}">
+    <label for="Fname">First Name:</label>
+    <input type="text" name="Fname" id="Fname" value="{{record.Fname}}" autofocus>
+    <br><br>
+    <label for="Lname">Last Name:</label>
+    <input type="text" name="Lname" id="Lname" value="{{record.Lname}}">
+    <br><br>
+    <label for="Gender">Gender:</label>
+    <input type="text" name="Gender" id="Gender" value="{{record.Gender}}">
+    <br><br>
+    <label for="State">State:</label>
+    <input type="text" name="State" id="State" value="{{record.State}}">
+    <br><br>
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open Sans" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section" style = "margin-top:100px;">
+        <div class="row">
+            <div class = "column">
+                <h1>An Open Resource For Opioid Data</h1>
+                <p>The Opoid Index is a platform that allows prescribers and government agencies to understand data about opioids and drug use. </p>
+                <button type="button" class="button"><a href="{% url 'prescribers' %}"> View The Data </a></button> 
+            </div>
+            <div class = "column">
+                <img src="{% static 'img/doctor.png' %}" class ="hero-image"> 
+            </div>
+        </div>
+    </div>
+
+    <!-- body section -->
+    <div class="body-section">
+        <div style="display:block;">
+        <div class="row" style="justify-content: center;">
+            <div class = "column" style = "justify-content: center;">
+                <h2>Analyze our Database for Useful Trends </h2>
+                <div class="container">
+                    <div class="container1">
+
+                        <div class="container2">
+                            <div style="width: 10%;"> 
+                                <img src="{% static 'img/search logo.png' %}" class ="img2">
+                            </div>
+                            <div style="padding-left: 25px;">
+                                <h4>Search Database By Prescriber</h4>
+                            </div>
+                        </div>
+                        <div class="container2">
+                            <div style="width: 15%;"> </div>
+                            <div style="padding-left: 30;margin-top: -50;">
+                                <p>View information about prescriptions given based on prescriber location, gender, credentials and more </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container1">
+                        <div class="container2">
+                            <div style="width: 10%;"> 
+                                <img src="{% static 'img/search-red.png' %}" class ="img2">
+                            </div>
+                            <div style="padding-left: 25px;">
+                                <h4>Search Database By Drug </h4>
+                            </div>
+                        </div>
+                        <div class="container2">
+                            <div style="width: 15%;"> </div>
+                            <div style="padding-left: 30;margin-top: -50;">
+                                <p>View information about drugs that are prescribed, including the top 10 prescribers of each drug.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container1">
+                        <div class="container2">
+                            <div style="width: 10%;"> 
+                                <img src="{% static 'img/search-blue.png' %}" class ="img2">
+                            </div>
+                            <div style="padding-left: 25px;">
+                                <h4>View Useful Trends </h4>
+                            </div>
+                        </div>
+                        <div class="container2">
+                            <div style="width: 15%;"> </div>
+                            <div style="padding-left: 30;margin-top: -50;">
+                                <p>Explore useful and interesting trends and analysis we’ve created based on opioid data.  </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+            
+        </div>
+
+        
+    </div>
+
+    <!-- 2nd section -->
+    <div class="body-section">
+        <div style="display:block;">
+            
+
+            <div class="row" style="justify-content: center; margin-top: 50px;">
+                <div class = "columnbox">
+                    <div>
+                        <h5>Help End the Epedemic. View Trends and Analysis Today</h5>
+                    </div>
+
+                    <div style="padding-top: 10px;">
+                        <p>The Opoid Index is a platform that allows prescribers and government agencies to understand data about opioids and drug use. </p>
+                    </div>
+
+                    <div style="display: flex;justify-content: center; padding-top: 10px;"><button type="button" class="button"><a href="{% url 'prescribers' %}"> View The Data </a></button> 
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}
