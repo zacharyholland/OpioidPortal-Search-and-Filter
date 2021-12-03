@@ -291,9 +291,12 @@
             </div> 
             <div class="container3" style = "padding-top: 20px; padding-bottom: 20px; border-top:1px solid rgba(0, 0, 0, 0.3);">
                 <div style = "width: 100%; display: block;">
-                    <p style = "margin:10px;">Gender:</p>
-                    <p style = "margin:10px;">Credentials:</p>
-                    <p style = "margin:10px;">Location:</p>
+                    <p style = "margin:10px;">Gender: {{record.Gender}}</p>
+                    <p style = "margin:10px;">Credentials: 
+                    {% for Credential in credentials %}
+                        <p>{{Credential.credential_code}}</p>
+                    {% endfor %}</p>
+                    <p style = "margin:10px;">Location: {{record.State}}</p>
                     <p style = "margin:10px;">Specialty:</p>
                 </div>
                 

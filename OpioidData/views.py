@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Prescriber, Drug, Triple
+from .models import Prescriber, Drug, PrescriberCredential, Triple
 from django.db.models import Q
 
 # Create your views here.
@@ -27,10 +27,12 @@ def allDrugsPageView(request) :
 def singlePrescriberPageView(request, npi) :
     data = Prescriber.objects.get(npi = npi)
     data2 = Triple.objects.filter(prescriberid = npi)
+    data3 = PrescriberCredential.objects.filter(npi = npi)
 
     context = {
         "record" : data,
-        "drugs" : data2
+        "drugs" : data2,
+        "credentials" : data3
     }
 
     return render(request, 'OpioidData/prescriber.html', context)

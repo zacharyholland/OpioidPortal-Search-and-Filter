@@ -33,15 +33,22 @@ class Drug(models.Model) :
 
 class Credential(models.Model):
     credential = models.CharField(max_length=15)
-    credential_code = models.IntegerField
+    credential_code = models.IntegerField(unique=True)
+    
     class Meta:
         db_table = "pd_credential"
+    
+    def __str__(self) :
+        return (self.credential)
         
 class PrescriberCredential(models.Model):
     credential_code = models.ForeignKey(Credential, on_delete=DO_NOTHING)
-    npi = models.IntegerField(blank=False)
+    npi = models.ForeignKey(Prescriber, on_delete=DO_NOTHING)
     class Meta:
         db_table = "prescriber_credential"
+    
+    def __str__(self) :
+       return (self.credential_code)
 
 class Specialtie(models.Model):
     specialty_title = models.CharField(max_length=70)
