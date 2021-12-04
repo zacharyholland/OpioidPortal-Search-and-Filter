@@ -283,7 +283,7 @@
 {% for Triple in triple %}
 <div style = "display: flex; justify-content: center;">
     <div class="card" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px; ">
-        <a href="www.google.com" style = "width: 100%">
+        <a href="{% url 'prescriber' 1992857577 %}" style = "width: 100%">
             <div class="container3">
                 <div style = "width: 60% ">
                     <h4 style = "margin:5px; font-size: 18px;">{{Triple.prescriberid}}</h4>
