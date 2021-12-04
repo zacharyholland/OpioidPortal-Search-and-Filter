@@ -297,12 +297,7 @@
                         {{Credential.credential}}
                         {% endfor %}</p>
                     <p style = "margin:10px;">Location: {{record.State}}</p>
-                    
-                    <p style = "margin:10px;">Specialties: 
-                        {% for Specialty in specialty %}
-                        {{Specialty.specialty_title}}
-                        {% endfor %}
-                    </p>
+                    <p style = "margin:10px;">Specialty: {{record.specialty}}</p>
                 </div>
                 
             </div> 
@@ -358,7 +353,9 @@
                 <p>{{Drug.qty}}</p>
             </div>
             <div style = "width: 20%; text-align: center; margin: 0px;">
-                <p>50</p>
+                <p>
+                    {{average.average_quantity}}
+                </p>
             </div>
             <div style = "width: 20%; text-align: center;">
                 <img src="{% static "img/graph icon.png" %}" style = "height: 25px;">

@@ -3,6 +3,15 @@ from django.db.models.fields import NOT_PROVIDED, BooleanField
 from django.db.models.deletion import DO_NOTHING
 
 # Create your models here.
+class Specialty(models.Model):
+    specialty_type = models.CharField(unique=True, max_length=70)
+
+    def __str__(self) :
+       return (self.specialty_type)
+       
+    class Meta:
+        db_table = "specialty"
+
 class Prescriber(models.Model) :
     npi = models.CharField(unique=True, max_length=10)
     Fname = models.CharField(max_length=30)
@@ -10,6 +19,7 @@ class Prescriber(models.Model) :
     Gender = models.CharField(max_length=7)
     State = models.CharField(max_length=2)
     isopioid_prescriber = models.BooleanField(default=False)
+    specialty = models.ForeignKey(Specialty, to_field="specialty_type", on_delete=models.CASCADE)
 
     class Meta:
         db_table = "pd_prescriber"
@@ -50,26 +60,6 @@ class PrescriberCredential(models.Model):
     
     def __str__(self) :
        return (self.credential)
-
-class Specialtie(models.Model):
-    specialty_title = models.CharField(max_length=70)
-    specialty_code = models.IntegerField
-    
-    class Meta:
-        db_table = "pd_specialtie"
-    
-    def __str__(self) :
-        return (self.specialty_title)
-
-class PrescriberSpecialtie(models.Model):
-    specialty = models.ForeignKey(Credential, to_field="credential_code", on_delete=DO_NOTHING)
-    npi = models.ForeignKey(Prescriber, on_delete=DO_NOTHING)
-    
-    class Meta:
-        db_table = "prescriber_specialtie"
-
-    def __str__(self) :
-        return (self.specialty)
 
 class Triple(models.Model):
     prescriberid = models.ForeignKey(Prescriber, to_field="npi", db_column="prescriberid", on_delete=DO_NOTHING)

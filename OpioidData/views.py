@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Prescriber, Drug, PrescriberCredential, PrescriberSpecialtie, Triple
-from django.db.models import Q
+from .models import Prescriber, Drug, PrescriberCredential, Triple
+from django.db.models import Q, Avg
 
 # Create your views here.
 def indexPageView(request) :
@@ -28,13 +28,18 @@ def singlePrescriberPageView(request, npi) :
     data = Prescriber.objects.get(npi = npi)
     data2 = Triple.objects.filter(prescriberid = npi)
     data3 = PrescriberCredential.objects.filter(npi = npi)
-    data4 = PrescriberSpecialtie.objects.filter(npi = npi)
+    #data5 = Triple.objects.filter(prescriberid = npi).values('drugname')
+    data6 = Triple.objects.filter(drugname = 'HYDROCHLOROTHIAZIDE').aggregate(average_quantity=Avg('qty'))
+    #for Triple.drugname in data2 :
+     #   average = []
+      #  average[iCount] = Triple.objects.filter(drugname = Triple.drugname).aggregate(average_quantity=Avg('qty'))
+       # iCount = iCount + 1
 
     context = {
         "record" : data,
         "drugs" : data2,
         "credentials" : data3,
-        "specialty" : data4
+        "average" : data6
     }
 
     return render(request, 'OpioidData/prescriber.html', context)
@@ -58,8 +63,7 @@ def singleDrugPageView(request, drugname) :
    'drugname': drugname
     } 
 
-    data2 = Triple.objects.raw('''SELECT * from pd_triple 
-                       where drugname = %(drugname)s ORDER BY qty DESC LIMIT 10 ''', my_dict)
+    data2 = Triple.objects.raw('''SELECT * from pd_triple where drugname = %(drugname)s ORDER BY qty DESC LIMIT 10 ''', my_dict)
 
     context = {
         "record" : data,
