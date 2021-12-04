@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Prescriber, Drug, PrescriberCredential, Triple
+from .models import Prescriber, Drug, PrescriberCredential, PrescriberSpecialtie, Triple
 from django.db.models import Q
 
 # Create your views here.
@@ -28,11 +28,13 @@ def singlePrescriberPageView(request, npi) :
     data = Prescriber.objects.get(npi = npi)
     data2 = Triple.objects.filter(prescriberid = npi)
     data3 = PrescriberCredential.objects.filter(npi = npi)
+    data4 = PrescriberSpecialtie.objects.filter(npi = npi)
 
     context = {
         "record" : data,
         "drugs" : data2,
-        "credentials" : data3
+        "credentials" : data3,
+        "specialty" : data4
     }
 
     return render(request, 'OpioidData/prescriber.html', context)
@@ -51,9 +53,14 @@ def editPageView(request, npi) :
 
 def singleDrugPageView(request, drugname) :
     data = Drug.objects.get(drugname = drugname)
-    data2 = Triple.objects.filter(drugname = drugname)
-    #data2 = Triple.objects.raw(f'SELECT * FROM pd_triple WHERE drugname = {drugname} ORDER BY qty DESC LIMIT 10;')
-    #data2 = Triple.objects.raw(f'SELECT * FROM pd_triple WHERE drugname = {drugname} ORDER BY qty DESC LIMIT 10;')
+
+    my_dict = {
+   'drugname': drugname
+    } 
+
+    data2 = Triple.objects.raw('''SELECT * from pd_triple 
+                       where drugname = %(drugname)s ORDER BY qty DESC LIMIT 10 ''', my_dict)
+
     context = {
         "record" : data,
         "triple" : data2

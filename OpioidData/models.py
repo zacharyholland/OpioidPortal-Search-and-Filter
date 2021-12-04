@@ -42,19 +42,34 @@ class Credential(models.Model):
         return (self.credential)
         
 class PrescriberCredential(models.Model):
-    credential_code = models.ForeignKey(Credential, on_delete=DO_NOTHING)
+    credential = models.ForeignKey(Credential, to_field="credential_code", on_delete=DO_NOTHING)
     npi = models.ForeignKey(Prescriber, on_delete=DO_NOTHING)
+    
     class Meta:
         db_table = "prescriber_credential"
     
     def __str__(self) :
-       return (self.credential_code)
+       return (self.credential)
 
 class Specialtie(models.Model):
     specialty_title = models.CharField(max_length=70)
     specialty_code = models.IntegerField
+    
     class Meta:
         db_table = "pd_specialtie"
+    
+    def __str__(self) :
+        return (self.specialty_title)
+
+class PrescriberSpecialtie(models.Model):
+    specialty = models.ForeignKey(Credential, to_field="credential_code", on_delete=DO_NOTHING)
+    npi = models.ForeignKey(Prescriber, on_delete=DO_NOTHING)
+    
+    class Meta:
+        db_table = "prescriber_specialtie"
+
+    def __str__(self) :
+        return (self.specialty)
 
 class Triple(models.Model):
     prescriberid = models.ForeignKey(Prescriber, to_field="npi", db_column="prescriberid", on_delete=DO_NOTHING)
