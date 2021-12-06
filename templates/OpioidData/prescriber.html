@@ -2,48 +2,189 @@
 {% load static %}
 {% block content %}
 <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-        google.charts.load('current', {
-            packages: ['corechart']
-        });
-        </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        /* styles for accordion and graph */
-        .accordion {
-          background-color: #FFFFFF;
-          color: #444;
-          cursor: pointer;
-          padding: 0px;
-          width: 100%;
-          border: none;
-          text-align: left;
-          outline: none;
-          font-size: 15px;
-          transition: 0.4s;
-        }
+
+      /* form css */
+
+            * {box-sizing: border-box}
         
-        .card2 {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.05);
-            transition: 0.3s;
-            width: 95%;
-            border-radius: 15px;
-            margin: 5px;
-            justify-content: center;
-          }
-        
-         .accordion:hover {
-            background: linear-gradient(96.57deg, #E8F1FF 26.99%, #F3F8FF 79.73%);
-        }
-        
-        .panel {
-          padding: 0 18px;
-          display: none;
-          background-color: white;
-          overflow: hidden;
+            .search_categories{
+            font-size: 13px;
+            font-family: 'open sans';
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 5px;
+            margin-bottom: 22px;
+            width: 200px;
+            margin-left: 10px;
+            }
+
+            .search_categories .select{
+            width: 100%;
+            background:url('img/down arrow.png') no-repeat;
+            background-position:80% center;
+            }
+
+            .search_categories .select select{
+            background: transparent;
+            line-height: 1;
+            border: 0;
+            padding: 0;
+            border-radius: 0;
+            width: 120%;
+            position: relative;
+            z-index: 10;
+            font-size: 1em;
+            }    
+
+        /* Add padding to containers */
+        .container6 {
+        padding: 16px;
+        width: 80%;
+        font-family: 'open sans';
         }
 
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+        }
+
+        /* Overwrite default styles of hr */
+        hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+        }
+
+        /* Set a style for the submit/register button */
+        .registerbtn {
+        background-color: #014ED5;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+        }
+
+        .registerbtn:hover {
+        opacity:1;
+        }
+
+
+
+        /* End Form CSS */
+
+      /* checkbox css */
+
+      /* Customize the label (the container) */
+      .container7 {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      margin-left: 14px;
+      }
+
+      /* Hide the browser's default checkbox */
+      .container7 input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+      }
+
+      /* Create a custom checkbox */
+      .checkmark {
+      border-radius: 5px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: white;
+      }
+
+      /* On mouse-over, add a grey background color */
+      .container7:hover input ~ .checkmark {
+      background-color: white;
+      }
+
+      /* When the checkbox is checked, add a blue background */
+      .container7 input:checked ~ .checkmark {
+      background-color: #014ED5;
+      }
+
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      }
+
+      /* Show the checkmark when checked */
+      .container7 input:checked ~ .checkmark:after {
+      display: block;
+      }
+
+      /* Style the checkmark/indicator */
+      .container7 .checkmark:after {
+      left: 9px;
+      top: 5px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+      }
+
+      /* end checkbox css */
+
+      .button {
+        background: #014ED5;
+        border-radius: 5px;
+        border-color:#FFFFFF;
+        border-width: 0px;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.03em;
+        color: #FFFFFF;
+        }
 
       .section1 {
     
@@ -179,7 +320,7 @@
       width: 280px; /* Set the width of the sidebar */
       position: fixed; /* Fixed Sidebar (stay in place on scroll) */
       z-index: 1; /* Stay on top */
-      top: 100; /* Stay at the top */
+      top: 100px; /* Stay at the top */
       left: 0;
       background: #F3F8FF;
       box-shadow: 0px 4px 20px rgba(58, 59, 61, 0.05);    
@@ -223,47 +364,171 @@
 <body>
 
 
- <!-- Side navigation -->
- <div class="sidenav">
+<!-- Side navigation -->
+<div class="sidenav">
 
+  <!--Menu Links -->
   <div>
-  <h6 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px;">Search</h6>
-  
-</div>
-
-  <div class="topnav" >
-
-      <div class="search-container">
-      <form action="{% url 'searchprescribersname' %}" method=POST style = "display: flex; ">
-        {% csrf_token %}
-          <input type="text" placeholder="Prescriber Name..." name="named">
-          <div style = "width: 50px; margin-left: -20px;">
-              <button type="submit"><i class="fa fa-search" style = "color: white"></i></button>
-          </div>
-      </form>
+      <h6 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px;">Menu</h6>
+      <div style = "padding-left:10px">
+          <a href="{% url 'drugs' %}">Drugs</a>
+          <a href="{% url 'prescribers' %}">Prescribers</a>
       </div>
-      <div class="search-container">
-        <form action="{% url 'searchprescribersnpi' %}" method=POST style = "display: flex; ">
-          {% csrf_token %}
-            <input type="text" placeholder="Prescriber NPI..." name="NPIed">
-            <div style = "width: 50px; margin-left: -20px;">
-                <button type="submit"><i class="fa fa-search" style = "color: white"></i></button>
-            </div>
-        </form>
-        </div>
   </div>
-<div>
-  <h6 style = "margin: 0px; margin-top: 20px; padding-left: 12px; font-weight: 700; font-size: 20px;">Filter</h6>
-  <h6 style = "margin: 0px; margin-top: 20px; padding-left: 12px; font-weight: 700; font-size: 20px;">Gender</h6>
-  <div style = "padding-left:10px">
-      <a href="{% url 'male' %}">Male</a>
-      <a href="{% url 'female' %}">Female</a>
+  <div style = "margin-left: 10px; margin-top: 10px;">
+    <a href="{% url 'add' %}"><button type="button" class="button">Add a Prescriber</button></a>
+</div>
+
+  <!-- New Search Filter Form -->
+
+  <div style = "margin-top:15px;">
+      <h6 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px;">Search Prescribers</h6>
   </div>
 
+  <form action="{% url 'searchprescribers' %}" method=POST>
+    {% csrf_token %}
+      <div class="topnav" >
+        <div style = "margin-top:15px; margin-bottom:10px">
+          <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">NPI</h4>
+      </div>
+        <div class="search-container">
+          <div style = "display: flex; margin-bottom: 0px;">
+              <input type="text" placeholder="NPI..." name="NPIed">
+          </div>
+      </div>
+      <div style = "margin-top:15px; margin-bottom:10px">
+        <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">Name</h4>
+    </div>
+          <div class="search-container">
+              <div style = "display: flex; margin-bottom: 10px;">
+                  <input type="text" placeholder="Name..." name="named">
+              </div>
+          </div>
+      </div>
+      <div style = "margin-top:15px; margin-bottom:10px">
+        <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">Gender</h4>
+    </div>
+      <label class="container7" >Male
+          <input type="checkbox" style = "float: right;">
+          <span class="checkmark"></span>
+      </label>
+
+      <label class="container7" >Female
+          <input type="checkbox" style = "float: right;">
+          <span class="checkmark"></span>
+      </label>
+      <div style = "margin-top:15px; margin-bottom:10px">
+        <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">Opioid Prescriber</h4>
+    </div>
+      <label class="container7" >Yes
+          <input type="checkbox" style = "float: right;">
+          <span class="checkmark"></span>
+      </label>
+
+      <label class="container7" >No
+          <input type="checkbox" style = "float: right;">
+          <span class="checkmark"></span>
+      </label>
+      <div style = "margin-top:15px; margin-bottom:10px">
+        <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">State</h4>
+    </div>
+                <div class="search_categories">
+                    <div class="select">
+                        <select id="state" name="state">
+                            <option value="--">--</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option></select>
+                    </div>
+                </div>
+                <div style = "margin-top:15px; margin-bottom:10px">
+                  <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">Specialty</h4>
+              </div>
+                <div class="search_categories">
+                  <div class="select">
+                      <select name="specialty" id="specialty">
+                      <option value="--">--</option>
+                      {% for Specialty in specialty %}
+                      <option value="{{Specialty.specialty_type}}">{{Specialty.specialty_type}}</option>
+                      {% endfor %}
+                      </select>
+                  </div>
+              </div>
+              <div style = "margin-top:15px; margin-bottom:10px">
+                <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">Credential</h4>
+            </div>
+              <div class="search_categories">
+                <div class="select">
+                    <select name="credential" id="credntial">
+                    <option value="--">--</option>
+                    {% for Credential in credential %}
+                    <option value="{{Credential.credential}}">{{Credential.credential}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </div>
+      <div style = "margin-left: 10px; margin-top: 10px;">
+        <button type="submit" class="button"> Search Prescribers</button>
+    </div>
+
+  </form>
+
+  
+  
+
+  <!--Reset Button-->
+<div style = "margin-left: 10px; margin-top: 10px; margin-bottom: 200px;">
+    <a href="{% url 'prescribers' %}"> Reset Search</a>
 </div>
-<div style = "margin-left: 10px; margin-top: 100px">
-  <a href="{% url 'prescribers' %}"><button type="button" class="button"> Reset Search</button></a>
-</div>
+  
 </div>
 <!--Empty Div to Move Content Down-->
 <div class = "section1" style = "margin-top: 130px;">
@@ -360,7 +625,11 @@
             </div>
             <div style = "width: 20%; text-align: center; margin: 0px;">
                 <p>
-                    {{average.average_quantity}}
+                    {% for Average in average %}
+                        {% if Average.drugname == Drug.drugname %}
+                            {{Average.average_quantity}}
+                        {% endif %}
+                    {% endfor %}
                 </p>
             </div>
             <div style = "width: 20%; text-align: center;">

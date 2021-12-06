@@ -549,15 +549,11 @@
                 
                 <label for="Lname"><b>Last Name </b></label>
                 <input type="text" placeholder="Enter Last Name" name="Lname" id="Lname" value="{{record.Lname}}" required>
-
-                <label for="credentials"><b>Credentials</b> (Please seperate credentials with a comma)</label>
-                <input type="text" placeholder="Enter Credentials" name="credentials" id="credentials">
                 
-                  
                   
                 <!--Gender-->
                 <label for="Gender"><b>Gender</b></label>
-                <div class="search_categories">
+                <div class="search_categories" style="width:100%">
                     <div class="select">
                         <select name="Gender" id="Gender">
                         <option value="F" selected=
@@ -580,7 +576,7 @@
                    
                 <!--State-->   
                 <label for="State"><b>State</b></label>
-                <div class="search_categories">
+                <div class="search_categories" style="width:100%">
                     <div class="select">
                         <select id="State" name="State" required>
                             <option value="--">--</option>
@@ -641,7 +637,7 @@
                       
                 <!--Speciality-->
                 <label for="Specialty"><b>Specialty</b></label>
-                <div class="search_categories">
+                <div class="search_categories" style="width:100%">
                     <div class="select">
                         <select name="Specialty" id="Specialty">
                         {% for Specialty in specialty %}
@@ -653,7 +649,7 @@
 
                 <!--Opioid Prescriber-->
                 <label for="IsOpioid"><b>Opioid Prescriber</b></label>
-                <div class="search_categories">
+                <div class="search_categories" style="width:100%">
                     <div class="select">
                         <select name="IsOpioid" id="Opioid">
                         <option value="TRUE" selected=

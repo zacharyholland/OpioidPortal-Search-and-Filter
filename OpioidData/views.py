@@ -40,7 +40,11 @@ def singlePrescriberPageView(request, npi) :
     data2 = Triple.objects.filter(prescriberid = npi)
     data3 = PrescriberCredential.objects.filter(npi = npi)
     #data5 = Triple.objects.filter(prescriberid = npi).values('drugname')
-    data6 = Triple.objects.filter(drugname = 'HYDROCHLOROTHIAZIDE').aggregate(average_quantity=Avg('qty'))
+
+    data6 = Triple.objects.aggregate(average_quantity=Avg('qty'))
+
+    #Triple.objects.raw(''' SELECT id, drugname, AVG(qty) AS "avgqty" FROM pd_triple GROUP BY id, drugname ''')
+    
     #for Triple.drugname in data2 :
      #   average = []
       #  average[iCount] = Triple.objects.filter(drugname = Triple.drugname).aggregate(average_quantity=Avg('qty'))
@@ -64,7 +68,7 @@ def editPageView(request, npi) :
 
     context = {
         "record" : data,
-        "specialty" : data1
+        "specialty" : data1,
     }
 
     return render(request, 'OpioidData/edit.html', context)
@@ -120,11 +124,11 @@ def addPageView(request) :
         prescriber.specialty = request.POST['Specialty']
         prescriber.isopioid_prescriber = request.POST['IsOpioid']
 
-        Prescriber_Credential.npi = request.POST['npi']
-        Prescriber_Credential.credential = request.POST['credentials']
+        #Prescriber_Credential.npi = request.POST['npi']
+        #Prescriber_Credential.credential = request.POST['credentials']
 
         prescriber.save()
-        Prescriber_Credential.save()
+        #Prescriber_Credential.save()
 
         return allPrescriberPageView(request)
     else :
@@ -240,7 +244,7 @@ def addDrugPageView(request, npi) :
 
         triple = Triple()
 
-        triple.prescriberid = request.POST['npi']
+        triple.prescriberid = npi
         triple.drugname = request.POST['drugname']
         triple.qty = request.POST['qty']
         
