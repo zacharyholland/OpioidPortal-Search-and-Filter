@@ -16,12 +16,11 @@ class Prescriber(models.Model) :
     npi = models.CharField(unique=True, max_length=10)
     Fname = models.CharField(max_length=30)
     Lname = models.CharField(max_length=30)
-    Gender = models.CharField(max_length=7)
-    State = models.CharField(max_length=2)
-    isopioid_prescriber = models.CharField(max_length=7)
-    specialty = models.CharField(max_length=30)
-    #specialty = models.ForeignKey(Specialty, to_field="specialty_type", on_delete=models.CASCADE)
-
+    Gender = models.CharField(max_length=7, blank=True)
+    State = models.CharField(max_length=2, blank=True)
+    isopioid_prescriber = models.CharField(max_length=7, blank=True)
+    specialty = models.CharField(max_length=30, blank=True)
+    
     class Meta:
         db_table = "pd_prescriber"
 
@@ -44,7 +43,7 @@ class Drug(models.Model) :
 
 class Credential(models.Model):
     credential = models.CharField(max_length=15)
-    credential_code = models.IntegerField(unique=True)
+    credential_code = models.IntegerField(unique=True, default=10000000000)
     
     class Meta:
         db_table = "pd_credential"
@@ -53,8 +52,8 @@ class Credential(models.Model):
         return (self.credential)
         
 class PrescriberCredential(models.Model):
-    credential = models.ForeignKey(Credential, to_field="credential_code", on_delete=DO_NOTHING)
-    npi = models.ForeignKey(Prescriber, on_delete=DO_NOTHING)
+    credential = models.ForeignKey(Credential, to_field="credential_code", on_delete=DO_NOTHING, default=110)
+    npi = models.ForeignKey(Prescriber, to_field="npi", on_delete=DO_NOTHING)
     
     class Meta:
         db_table = "prescriber_credential"

@@ -388,24 +388,34 @@
   <form action="{% url 'searchprescribers' %}" method=POST>
     {% csrf_token %}
       <div class="topnav" >
-        <div style = "margin-top:15px; margin-bottom:10px">
-          <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">NPI</h4>
-      </div>
+        
         <div class="search-container">
           <div style = "display: flex; margin-bottom: 0px;">
               <input type="text" placeholder="NPI..." name="NPIed">
           </div>
+        </div>
       </div>
-      <div style = "margin-top:15px; margin-bottom:10px">
-        <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">Name</h4>
-    </div>
+
+      
           <div class="search-container">
               <div style = "display: flex; margin-bottom: 10px;">
                   <input type="text" placeholder="Name..." name="named">
               </div>
           </div>
-      </div>
-      <div style = "margin-top:15px; margin-bottom:10px">
+
+          
+          <label for="Gender"><b>Gender</b></label>
+          <div class="search_categories">
+              <div class="select">
+                  <select name="Gender" id="Gender">
+                  <option value="F" selected="selected">Female</option>
+                  <option value="M">Male</option>
+                  </select>
+              </div>
+          </div>
+        
+
+      <!--<div style = "margin-top:15px; margin-bottom:10px">
         <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">Gender</h4>
     </div>
       <label class="container7" >Male
@@ -514,7 +524,7 @@
                     {% endfor %}
                     </select>
                 </div>
-            </div>
+            </div>-->
       <div style = "margin-left: 10px; margin-top: 10px;">
         <button type="submit" class="button"> Search Prescribers</button>
     </div>

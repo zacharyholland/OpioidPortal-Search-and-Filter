@@ -153,17 +153,7 @@ def searchDrugsPageView(request) :
 
 def searchPrescribersNamePageView(request) :
     if request.method == "POST" :
-        prenpi = str(request.POST['NPIed'])
-        npi = "%" + prenpi + "%"
-        prename = str(request.POST['name'])
-        name = "%" + prename + "%"
         
-        my_dict = {
-        'npi': npi,
-        'name': name
-        #'state': request.POST['state'],
-        #'specialty': request.POST['specialty']
-        } 
 
         prescribers = Prescriber.objects.raw(''' SELECT * FROM pd_prescribers WHERE npi LIKE '%(npi)s' AND Fname LIKE '%(name)s' ''', my_dict)
 
@@ -222,9 +212,14 @@ def femalePrescribersPageView(request) :
 def searchPrescribersPageView(request) :
     if request.method == "POST" :
 
+        #prenpi = str(request.POST['NPIed'])
+        #npi = "%" + prenpi + "%"
+        prename = request.POST['name']
+        name = "%" + prename + "%"
+        
         my_dict = {
-        #'npi': request.POST['npi'],
-        'name': request.POST['named'],
+        #'npi': npi,
+        'name': name
         #'state': request.POST['state'],
         #'specialty': request.POST['specialty']
         } 
@@ -279,10 +274,14 @@ def addCredentialPageView(request, npi) :
     if request.method == 'POST' :
         prescriber_credential = PrescriberCredential()
 
+        print(type(npi))
+
         prescriber_credential.npi = npi
         prescriber_credential.credential = request.POST['credential']
 
         prescriber_credential.save()
+
+        return render(request, "OpioidData/addcredential.html")
     
     else :
         record = Prescriber.objects.get(npi=npi)
