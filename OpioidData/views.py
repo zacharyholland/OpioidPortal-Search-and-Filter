@@ -149,15 +149,19 @@ def searchDrugsPageView(request) :
 
 def searchPrescribersNamePageView(request) :
     if request.method == "POST" :
-
+        prenpi = str(request.POST['NPIed'])
+        npi = "%" + prenpi + "%"
+        prename = str(request.POST['name'])
+        name = "%" + prename + "%"
+        
         my_dict = {
-        #'npi': request.POST['npi'],
-        'name': request.POST['name'],
+        'npi': npi,
+        'name': name
         #'state': request.POST['state'],
         #'specialty': request.POST['specialty']
         } 
 
-        prescribers = Prescriber.objects.raw(''' SELECT * FROM pd_prescribers WHERE Fname = %(name)s ''', my_dict)
+        prescribers = Prescriber.objects.raw(''' SELECT * FROM pd_prescribers WHERE npi LIKE '%(npi)s' AND Fname LIKE '%(name)s' ''', my_dict)
 
         context = {
             'prescribers' : prescribers
