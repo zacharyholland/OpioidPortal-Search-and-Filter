@@ -622,10 +622,16 @@
                 </div>
                 <div style = "width: 30%; display: grid; justify-content: end;">
                     <div style = "float: right; display: grid; justify-content: end;">
+                        <a href="{% url 'delete' record.npi %}"><button type="button" class="button2"> Delete Prescriber</button></a>
+                    </div>
+                    <div style = "float: right; display: grid; margin-top:10px; justify-content: end;">
                         <a href="{% url 'edit' record.npi %}"><button type="button" class="button2"> Edit Prescriber</button></a>
                     </div>
                     <div style = "float: right; margin-top:10px; display: grid; justify-content: end;">
                         <a href="{% url 'addcredential' record.npi %}"><button type="button" class="button2"> Add Credentials</button></a>
+                    </div>
+                    <div style = "float: right; margin-top:10px; display: grid; justify-content: end;">
+                        <a href="{% url 'adddrug' record.npi %}"><button type="button" class="button2"> Add Prescriptions</button></a>
                     </div>
                 </div>
                 
@@ -685,7 +691,7 @@
                 <p>
                     {% for Average in average %}
                         {% if Average.drugname == Drug.drugname %}
-                            {{Average.average_quantity}}
+                            {{Average.id}}
                         {% endif %}
                     {% endfor %}
                 </p>

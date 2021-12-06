@@ -523,7 +523,7 @@
 <div style = "justify-content: center;">
 
         
-    <form name="form" method="post" action="{% url 'update' %}" style = "display: flex; justify-content: center;">
+    <form name="form" method="post" action="{% url 'update' record.npi %}" style = "display: flex; justify-content: center;">
         {% csrf_token %}
         <div class="container6">
           <h2>Update prescriber info</h2>             

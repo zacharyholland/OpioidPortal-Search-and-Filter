@@ -2,7 +2,7 @@ from django.db.models.aggregates import Sum
 from django.db.models.fields import CharField
 from django.shortcuts import render
 from .models import Credential, Prescriber, Drug, PrescriberCredential, Triple, Specialty
-from django.db.models import Q, Avg
+from django.db.models import Q, Avg, Count, Sum
 
 # Create your views here.
 def indexPageView(request) :
@@ -42,22 +42,17 @@ def singlePrescriberPageView(request, npi) :
     data3 = PrescriberCredential.objects.filter(npi = npi)
     data4 = Triple.objects.filter(prescriberid = npi).aggregate(totaldrug=Sum('qty'))
     #data5 = Triple.objects.filter(prescriberid = npi).values('drugname')
-
-    data6 = Triple.objects.aggregate(average_quantity=Avg('qty'))
-
-    #Triple.objects.raw(''' SELECT id, drugname, AVG(qty) AS "avgqty" FROM pd_triple GROUP BY id, drugname ''')
-    
-    #for Triple.drugname in data2 :
-     #   average = []
-      #  average[iCount] = Triple.objects.filter(drugname = Triple.drugname).aggregate(average_quantity=Avg('qty'))
-       # iCount = iCount + 1
+    #sum = Triple.objects.filter(drugname=data2.drugname).aggregate(sum=Sum('qty'))
+    #count = Triple.objects.filter(drugname=data2.drugname).annotate(Count('drugname'))
+    #averages = sum/count
+    data6 = Triple.objects.filter(prescriberid = npi).raw(''' SELECT drugname, ROUND(AVG(qty),2) AS id FROM pd_triple GROUP BY drugname ''')
 
     context = {
         "record" : data,
         "drugs" : data2,
         "credentials" : data3,
         "average" : data6,
-        "sum" : data4
+        "sum" : data4,
     }
 
     return render(request, 'OpioidData/prescriber.html', context)
@@ -92,7 +87,7 @@ def singleDrugPageView(request, drugname) :
 
     return render(request, 'OpioidData/drug.html', context)
 
-def updatePageView(request) :
+def updatePageView(request, npi) :
     if request.method == 'POST' :
         npi = request.POST['npi']
 
@@ -105,7 +100,7 @@ def updatePageView(request) :
 
         prescriber.save()
 
-    return allPrescriberPageView(request)
+    return singlePrescriberPageView(request, npi)
 
 def deletePageView(request, npi) :
     data = Prescriber.objects.get(npi=npi)
@@ -220,9 +215,10 @@ def newDrugPageView(request) :
 
         drug.save()
 
-        return allDrugsPageView(request)
+        return allPrescriberPageView(request)
     else :
         return render(request, "OpioidData/newdrug.html")
+
 
 def addCredentialPageView(request, npi) :
     if request.method == 'POST' :
