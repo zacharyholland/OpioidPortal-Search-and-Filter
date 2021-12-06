@@ -97,6 +97,8 @@ def updatePageView(request, npi) :
         prescriber.Lname = request.POST['Lname']
         prescriber.Gender = request.POST['Gender']
         prescriber.State = request.POST['State']
+        prescriber.isipioid_prescriber = request.POST['IsOpioid']
+        prescriber.specialty = request.POST['Specialty']
 
         prescriber.save()
 
