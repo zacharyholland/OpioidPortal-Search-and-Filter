@@ -271,6 +271,8 @@
 <!-- Page content -->
 <div class="main">
 <!--Prescriber Details Card-->
+<!--<a href="{% url 'addcredential' record.npi %}">
+<a href="{% url 'adddrug' record.npi %} ">-->
 <div style = "display: flex; justify-content: left;">
     <div class="card" style = "width: 100%; display: block;">
             <div class="container3" style = "width: 95%; padding-top: 20px; padding-bottom: 20px;">
@@ -283,11 +285,11 @@
                         <p style = "color: #B87070; font-weight: 600; margin: 10px;">Opioid Prescriber</p>
                     </div>
                     {% elif record.isopioid_prescriber == 'FALSE' %}
-                    <div style = " width: 120px; background-color: #EFFEEE; text-align: center; float: right; border-radius: 20px; ">
+                    <a href="{% url 'adddrug' record.npi %} "><div style = " width: 120px; background-color: #EFFEEE; text-align: center; float: right; border-radius: 20px; ">
                         <p style = "color: #358C43; font-weight: 600; margin: 10px;">Not Opioid Prescriber</p>
-                    </div>
+                    </div></a>
                     {% endif %}
-                </div>  
+                </div>
             </div> 
             <div class="container3" style = "padding-top: 20px; padding-bottom: 20px; border-top:1px solid rgba(0, 0, 0, 0.3);">
                 <div style = "width: 100%; display: block;">
@@ -341,14 +343,18 @@
 </div>
 
 <!--Accordion-->
-{% for Drug in drugs %}  
+{% for Drug in drugs %}
+<script type="text/javascript">
+    var name = "{{Triple.prescriberid}}"
+    var quantity = parseInt("{{Triple.qty}}");
+ </script>  
 <div>
     <div class="accordion card2">
         <div class="container3" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px;">
-            <div style = "width: 40% ">
-                <h4 style = "margin:5px; font-size: 18px;">{{Drug.drugname}}</h4>
+            <div style = "width: 20% ">
+                <a href="{% url 'drug' Drug.drugname %}"><h4 style = "margin:5px; font-size: 18px;">{{Drug.drugname}}</h4></a>
             </div>
-        
+            <div style="width:20%"></div>   
             <div style = "width: 20%; text-align: center; margin: 0px;">
                 <p>{{Drug.qty}}</p>
             </div>
@@ -371,7 +377,7 @@
                         /* Define the chart to be drawn.*/
                         var data = google.visualization.arrayToDataTable([
                             ['Drug Prescriptions Given', 'Number of Prescriptions'],
-                            ['Bradford Huber', 600],
+                            [name, quantity],
                             ['Average', 2000]
                             
                         ]);

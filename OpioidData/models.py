@@ -18,8 +18,9 @@ class Prescriber(models.Model) :
     Lname = models.CharField(max_length=30)
     Gender = models.CharField(max_length=7)
     State = models.CharField(max_length=2)
-    isopioid_prescriber = models.BooleanField(default=False)
-    specialty = models.ForeignKey(Specialty, to_field="specialty_type", on_delete=models.CASCADE)
+    isopioid_prescriber = models.CharField(max_length=7)
+    specialty = models.CharField(max_length=30)
+    #specialty = models.ForeignKey(Specialty, to_field="specialty_type", on_delete=models.CASCADE)
 
     class Meta:
         db_table = "pd_prescriber"
