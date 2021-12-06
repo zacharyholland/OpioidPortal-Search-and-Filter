@@ -567,7 +567,7 @@
                   
                 <!--Gender-->
                 <label for="Gender"><b>Gender</b></label>
-                <div class="search_categories">
+                <div class="search_categories" style="width:100%">
                     <div class="select">
                         <select name="Gender" id="Gender">
                         <option value="F" selected="selected">Female</option>
@@ -578,7 +578,7 @@
                    
                 <!--State-->   
                 <label for="State"><b>State</b></label>
-                <div class="search_categories">
+                <div class="search_categories" style="width:100%">
                     <div class="select">
                         <select id="State" name="State">
                             <option value="--">--</option>
@@ -639,7 +639,7 @@
                       
                 <!--Speciality-->
                 <label for="Specialty"><b>Specialty</b></label>
-                <div class="search_categories">
+                <div class="search_categories" style="width:100%">
                     <div class="select">
                         <select name="Specialty" id="Specialty">
                         <option value="--">--</option>
@@ -652,7 +652,7 @@
 
                 <!--Opioid Prescriber-->
                 <label for="IsOpioid"><b>Opioid Prescriber</b></label>
-                <div class="search_categories">
+                <div class="search_categories" style="width:100%">
                     <div class="select">
                         <select name="IsOpioid" id="Opioid">
                         <option value="TRUE" selected="selected">Yes</option>
@@ -661,7 +661,18 @@
                     </div>
                 </div>
                   
-                  
+                <!--Credential-->
+                <label for="credential"><b>Credential (You can add more later)</b></label>
+                <div class="search_categories" style="width:100%">
+                    <div class="select">
+                        <select name="credential" id="credential">
+                        <option value="--">--</option>
+                        {% for Credential in credential %}
+                        <option value="{{Credential.credential_code}}">{{Credential.credential}}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                </div>
     
             
           

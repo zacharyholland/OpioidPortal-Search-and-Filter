@@ -1,16 +1,10 @@
 from django.urls import path
-from .views import addCredentialPageView, newDrugPageView, addDrugPageView, resourcesPageView, portalPageView, searchPrescribersPageView, searchPrescribersNPIPageView, searchPrescribersNamePageView, femalePrescribersPageView, malePrescribersPageView, notOpioidDrugsPageView, opioidDrugsPageView, searchDrugsPageView, addPageView, deletePageView, updatePageView, editPageView, trendsPageView, allPrescriberPageView, allDrugsPageView, singlePrescriberPageView, singleDrugPageView, indexPageView
+from .views import addCredentialPageView, newDrugPageView, addDrugPageView, resourcesPageView, portalPageView, searchPrescribersPageView, searchDrugsPageView, addPageView, deletePageView, updatePageView, editPageView, trendsPageView, allPrescriberPageView, allDrugsPageView, singlePrescriberPageView, singleDrugPageView, indexPageView
 
 urlpatterns = [
     path("addcredential/<int:npi>", addCredentialPageView, name="addcredential"),
     path("newdrug/", newDrugPageView, name="newdrug"),
     path("searchprescribers/", searchPrescribersPageView, name="searchprescribers"),
-    path("searchprescribersnpi/", searchPrescribersNPIPageView, name="searchprescribersnpi"),
-    path("searchprescribersname/", searchPrescribersNamePageView, name="searchprescribersname"),
-    path("female/", femalePrescribersPageView, name="female"),
-    path("male/", malePrescribersPageView, name="male"),
-    path("notopioiddrugs/", notOpioidDrugsPageView, name="notopioiddrugs"),
-    path("opioiddrugs/", opioidDrugsPageView, name="opioiddrugs"),
     path("searchdrugs/", searchDrugsPageView, name="searchdrugs"),
     path("add/", addPageView, name="add"),
     path("delete/<int:npi>/", deletePageView, name='delete'),

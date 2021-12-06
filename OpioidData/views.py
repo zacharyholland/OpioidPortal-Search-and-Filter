@@ -1,3 +1,4 @@
+from django.db.models.aggregates import Sum
 from django.db.models.fields import CharField
 from django.shortcuts import render
 from .models import Credential, Prescriber, Drug, PrescriberCredential, Triple, Specialty
@@ -39,6 +40,7 @@ def singlePrescriberPageView(request, npi) :
     data = Prescriber.objects.get(npi = npi)
     data2 = Triple.objects.filter(prescriberid = npi)
     data3 = PrescriberCredential.objects.filter(npi = npi)
+    data4 = Triple.objects.filter(prescriberid = npi).aggregate(totaldrug=Sum('qty'))
     #data5 = Triple.objects.filter(prescriberid = npi).values('drugname')
 
     data6 = Triple.objects.aggregate(average_quantity=Avg('qty'))
@@ -54,7 +56,8 @@ def singlePrescriberPageView(request, npi) :
         "record" : data,
         "drugs" : data2,
         "credentials" : data3,
-        "average" : data6
+        "average" : data6,
+        "sum" : data4
     }
 
     return render(request, 'OpioidData/prescriber.html', context)
@@ -114,7 +117,6 @@ def deletePageView(request, npi) :
 def addPageView(request) :
     if request.method == 'POST' :
         prescriber = Prescriber()
-        Prescriber_Credential = PrescriberCredential()
 
         prescriber.npi = request.POST['npi']
         prescriber.Fname = request.POST['Fname']
@@ -124,10 +126,19 @@ def addPageView(request) :
         prescriber.specialty = request.POST['Specialty']
         prescriber.isopioid_prescriber = request.POST['IsOpioid']
 
+        prescriber.save()
+
+        prescriber_credential = PrescriberCredential()
+
+        prescriber_credential.npi = Prescriber.objects.get(npi = request.POST['npi'])
+        prescriber_credential.credential = Credential.objects.get(credential_code = request.POST['credential'])
+
+        prescriber_credential.save()
+
         #Prescriber_Credential.npi = request.POST['npi']
         #Prescriber_Credential.credential = request.POST['credentials']
 
-        prescriber.save()
+        
         #Prescriber_Credential.save()
 
         return allPrescriberPageView(request)
@@ -144,87 +155,30 @@ def addPageView(request) :
 
 def searchDrugsPageView(request) :
     if request.method == "POST" :
-        searched = request.POST['searched']
-        #opioid = request.POST['opioid']
-        drugs = Drug.objects.filter(drugname__icontains=searched)#.filter(isopioid__icontains=opioid)
-        return render(request, "OpioidData/drugsearch.html", {'searched' : searched, 'drugs' : drugs})
-    else :
-        return render(request, "OpioidData/drugsearch.html", {})
+        drugname = request.POST['drugname']
+        isopioid = request.POST['isopioid']
 
-def searchPrescribersNamePageView(request) :
-    if request.method == "POST" :
-        
-
-        prescribers = Prescriber.objects.raw(''' SELECT * FROM pd_prescribers WHERE npi LIKE '%(npi)s' AND Fname LIKE '%(name)s' ''', my_dict)
+        drugs = Drug.objects.filter(drugname__icontains=drugname).filter(isopioid__icontains=isopioid)
 
         context = {
-            'prescribers' : prescribers
+            'drugs' : drugs
         }
-        
-        return render(request, "OpioidData/searchprescribers.html", context)
+
+        return render(request, "OpioidData/drugsearch.html", context)
     else :
-        return render(request, "OpioidData/searchprescribers.html", {})
-
-def searchPrescribersNPIPageView(request) :
-    if request.method == "POST" :
-        NPIed = request.POST['NPIed']
-        prescribers = Prescriber.objects.filter(npi__icontains=NPIed)
-        return render(request, "OpioidData/searchprescribersnpi.html", {'NPIed':NPIed, 'prescribers' : prescribers})
-    else :
-        return render(request, "OpioidData/searchprescribersnpi.html", {})
-
-def opioidDrugsPageView(request) :
-    data = Drug.objects.filter(isopioid__icontains=True)
-
-    context = {
-        "drug" : data
-    }
-
-    return render(request, 'OpioidData/opioiddrugs.html', context)
-
-def notOpioidDrugsPageView(request) :
-    data = Drug.objects.filter(isopioid__icontains=False)
-
-    context = {
-        "drug" : data
-    }
-
-    return render(request, 'OpioidData/notopioiddrugs.html', context)
-
-def malePrescribersPageView(request) :
-    data = Prescriber.objects.filter(Gender__icontains='M')
-
-    context = {
-        "prescriber" : data
-    }
-
-    return render(request, 'OpioidData/male.html', context)
-
-def femalePrescribersPageView(request) :
-    data = Prescriber.objects.filter(Gender__icontains='F')
-
-    context = {
-        "prescriber" : data
-    }
-
-    return render(request, 'OpioidData/female.html', context)
+        return render(request, "OpioidData/drugsearch.html", {})
 
 def searchPrescribersPageView(request) :
     if request.method == "POST" :
 
-        #prenpi = str(request.POST['NPIed'])
-        #npi = "%" + prenpi + "%"
-        prename = request.POST['name']
-        name = "%" + prename + "%"
-        
-        my_dict = {
-        #'npi': npi,
-        'name': name
-        #'state': request.POST['state'],
-        #'specialty': request.POST['specialty']
-        } 
+        npi = request.POST['npi']
+        name = request.POST['name']
+        gender = request.POST['gender']
+        opioid = request.POST['isopioid']
+        state = request.POST['state']
+        specialty = request.POST['specialty']
 
-        prescribers = Prescriber.objects.raw(''' SELECT * FROM pd_prescriber WHERE "Fname" = %(name)s ''', my_dict)
+        prescribers = Prescriber.objects.filter(npi__icontains=npi).filter(Fname__icontains=name).filter(Gender__icontains=gender).filter(isopioid_prescriber__icontains=opioid).filter(specialty__icontains=specialty).filter(State__icontains=state)
 
         context = {
             'prescribers' : prescribers
@@ -239,13 +193,13 @@ def addDrugPageView(request, npi) :
 
         triple = Triple()
 
-        triple.prescriberid = npi
-        triple.drugname = request.POST['drugname']
+        triple.prescriberid = Prescriber.objects.get(npi = npi)
+        triple.drugname = Drug.objects.get(drugname = request.POST['drugname'])
         triple.qty = request.POST['qty']
         
         triple.save()
-
-        return singlePrescriberPageView(request)
+        
+        return singlePrescriberPageView(request, npi)
     else :
         prescriber = Prescriber.objects.get(npi = npi)
         data1 = Drug.objects.all()
@@ -274,14 +228,22 @@ def addCredentialPageView(request, npi) :
     if request.method == 'POST' :
         prescriber_credential = PrescriberCredential()
 
-        print(type(npi))
-
-        prescriber_credential.npi = npi
-        prescriber_credential.credential = request.POST['credential']
+        prescriber_credential.npi = Prescriber.objects.get(npi = npi)
+        prescriber_credential.credential = Credential.objects.get(credential_code = request.POST['credential'])
 
         prescriber_credential.save()
 
-        return render(request, "OpioidData/addcredential.html")
+        data = Prescriber.objects.all()
+        data1 = Specialty.objects.all()
+        data2 = Credential.objects.all()
+
+        context = {
+            "prescriber" : data,
+            "specialty" : data1,
+            "credential" : data2
+        }
+
+        return singlePrescriberPageView(request, npi)
     
     else :
         record = Prescriber.objects.get(npi=npi)

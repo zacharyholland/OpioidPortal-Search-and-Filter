@@ -4,25 +4,92 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-      .button {
-        background: #014ED5;
-        border-radius: 5px;
-        border-color:#FFFFFF;
-        border-width: 0px;
-        font-family: Open Sans;
-        font-style: normal;
-        font-weight: bold;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-        font-size: 18px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        letter-spacing: 0.03em;
-        color: #FFFFFF;
+      /* form css */
+
+            * {box-sizing: border-box}
+        
+            .search_categories{
+            font-size: 16px;
+            border: 1px solid #E1E1E1;
+            border-radius: 10px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 5px;
+            margin-bottom: 22px;
+            width: 200px;
+            margin-left: 0px;
+            }
+
+            .search_categories .select{
+            width: 100%;
+            background:url('img/down arrow.png') no-repeat;
+            background-position:80% center;
+            }
+
+            .search_categories .select select{
+            background: transparent;
+            line-height: 1;
+            border: 0;
+            padding: 0;
+            border-radius: 0;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            font-size: 1em;
+            }    
+
+        /* Add padding to containers */
+        .container6 {
+        padding: 16px;
+        width: 80%;
+        font-family: 'open sans';
         }
+
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+        }
+
+        /* Overwrite default styles of hr */
+        hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+        }
+
+        /* Set a style for the submit/register button */
+        .registerbtn {
+        background-color: #014ED5;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+        }
+
+        .registerbtn:hover {
+        opacity:1;
+        }
+
+
+
+        /* End Form CSS */
 
       /* checkbox css */
 
@@ -97,6 +164,26 @@
       }
 
       /* end checkbox css */
+
+      .button {
+        background: #014ED5;
+        border-radius: 5px;
+        border-color:#FFFFFF;
+        border-width: 0px;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.03em;
+        color: #FFFFFF;
+        }
 
       .section1 {
     
@@ -238,12 +325,13 @@
       box-shadow: 0px 4px 20px rgba(58, 59, 61, 0.05);    
       overflow-x: hidden; /* Disable horizontal scroll */
       padding-top: 20px;
+      padding-left: 10px;
     
     }
     
     /* The navigation menu links */
     .sidenav a {
-      padding: 6px 8px 6px 16px;
+      padding: 6px 8px 6px 10px;
       text-decoration: none;
       font-size: 18px;
       color: #818181;
@@ -280,47 +368,42 @@
  <div class="sidenav">
 
   <!--Menu Links -->
-  <div>
-    <h6 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px;">Menu</h6>
-    <div style = "padding-left:10px">
+  <div style = "margin-top: 20px;">
+    <h6 style = "margin: 0px; padding-left: 10px; font-weight: 700; font-size: 24px;">Menu</h6>
+    <div style = "padding-left:8px">
         <a href="{% url 'drugs' %}">Drugs</a>
         <a href="{% url 'prescribers' %}">Prescribers</a>
     </div>
 </div>
-<div style = "margin-left: 10px; margin-top: 10px;">
-  <a href="{% url 'newdrug' %}"><button type="button" class="button">Add a Drug</button></a>
+
+<!-- New Search Filter Form -->
+
+<div style = "margin-top:30px;">
+    <h6 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 24px;">Search Drugs</h6>
 </div>
 
-  <!-- New Search Filter Form -->
-
-  <div style = "margin-top:15px;">
-      <h6 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px;">Search Drugs</h6>
-  </div>
-
-  <form action="{% url 'searchdrugs' %}" method=POST>
-    {% csrf_token %}
-      <div class="topnav" >
-        <div style = "margin-top:15px; margin-bottom:10px">
-          <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">Drug Name</h4>
+<form action="{% url 'searchdrugs' %}" method=POST >
+  {% csrf_token %}
+    
+  <div class="topnav" >
+      <div class="search-container">
+        <div style = "display: flex; margin-bottom: 0px;">
+          <input type="text" placeholder="Drug Name..." name="drugname">
+        </div>
       </div>
-          <div class="search-container">
-              <div style = "display: flex; margin-bottom: 10px;">
-                  <input type="text" placeholder="Drug Name.." id-"searched" name="searched">
+  </div>
+  
+
+  <label for="isopioid" style="margin-left:10px;"><b>Opioid</b></label>
+          <div class="search_categories" style="margin-left:10px;">
+              <div class="select">
+                  <select name="isopioid" id="idopioid">
+                    <option value="" selected="selected">All</option>
+                  <option value="TRUE" >Yes</option>
+                  <option value="FALSE">No</option>
+                  </select>
               </div>
           </div>
-      </div>
-      <div style = "margin-top:15px; margin-bottom:10px">
-        <h4 style = "margin: 0px; padding-left: 12px; font-weight: 700; font-size: 20px; margin-bottom:">Is Opioid</h4>
-    </div>
-      <label class="container7" >Yes
-          <input type="checkbox" name="opioid" value="True" style = "float: right;">
-          <span class="checkmark"></span>
-      </label>
-
-      <label class="container7" >No
-          <input type="checkbox" name="notopioid" value="False" style = "float: right;">
-          <span class="checkmark"></span>
-      </label>
       <div style = "margin-left: 10px; margin-top: 20px">
         <button type="submit" class="button"> Search Drugs</button>
     </div>
