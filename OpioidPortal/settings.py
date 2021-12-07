@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'django-insecure-7ake*8*xoygxro2dlj1q*+mu=i^-qlz499$^4q!y=&hzqqhyx&'
 #heroku config:set SECRET_KEY="django-insecure-7ake*8*xoygxro2dlj1q*+mu=i^-qlz499$^4q!y=&hzqqhyx&" --app opioidindex
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get("django-insecure-7ake*8*xoygxro2dlj1q*+mu=i^-qlz499$^4q!y=&hzqqhyx&")
 EMAIL_HOST_USER = os.environ.get('camrynalise@gmail.com')
 EMAIL_HOST_PASSWORD = os.environ.get('camryn99!')    
 
@@ -33,7 +33,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('camryn99!')
 DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'opioidindex.herokuapp.com']
-
 
 # Application definition
 
