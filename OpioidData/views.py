@@ -1,7 +1,7 @@
 from django.db.models.aggregates import Sum
 from django.db.models.fields import CharField
 from django.shortcuts import render
-from .models import Credential, Prescriber, Drug, PrescriberCredential, Triple, Specialty
+from .models import Credential, Prescriber, Drug, PrescriberCredential, Triple, Specialty, State
 from django.db.models import Q, Avg, Count, Sum
 
 # Create your views here.
@@ -37,8 +37,12 @@ def allDrugsPageView(request) :
     return render(request, 'OpioidData/drugs.html', context)
 
 def singlePrescriberPageView(request, npi) :
+    my_dict = {
+        "prescriberid" : npi
+    }
+    
     data = Prescriber.objects.get(npi = npi)
-    data2 = Triple.objects.filter(prescriberid = npi)
+    data2 = Triple.objects.raw(''' SELECT DISTINCT drugname, prescriberid, qty AS id FROM pd_triple WHERE prescriberid = %(prescriberid)s ''', my_dict)
     data3 = PrescriberCredential.objects.filter(npi = npi)
     data4 = Triple.objects.filter(prescriberid = npi).aggregate(totaldrug=Sum('qty'))
     #data5 = Triple.objects.filter(prescriberid = npi).values('drugname')
@@ -46,6 +50,7 @@ def singlePrescriberPageView(request, npi) :
     #count = Triple.objects.filter(drugname=data2.drugname).annotate(Count('drugname'))
     #averages = sum/count
     data6 = Triple.objects.filter(prescriberid = npi).raw(''' SELECT drugname, ROUND(AVG(qty),2) AS id FROM pd_triple GROUP BY drugname ''')
+    data5 = Triple.objects.raw(''' SELECT prescriberid, drugname, SUM(qty) AS id FROM pd_triple WHERE prescriberid = %(prescriberid)s GROUP BY drugname, prescriberid ''', my_dict)
 
     context = {
         "record" : data,
@@ -53,6 +58,7 @@ def singlePrescriberPageView(request, npi) :
         "credentials" : data3,
         "average" : data6,
         "sum" : data4,
+        "sums" : data5
     }
 
     return render(request, 'OpioidData/prescriber.html', context)
@@ -63,10 +69,12 @@ def trendsPageView(request) :
 def editPageView(request, npi) :
     data = Prescriber.objects.get(npi = npi)
     data1 = Specialty.objects.all()
+    data2 = State.objects.all()
 
     context = {
         "record" : data,
         "specialty" : data1,
+        "state" : data2
     }
 
     return render(request, 'OpioidData/edit.html', context)
@@ -142,10 +150,12 @@ def addPageView(request) :
     else :
         data1 = Specialty.objects.all()
         data2 = Credential.objects.all()
+        data3 = State.objects.all()
 
         context = {
             "specialty" : data1,
-            "credential" : data2
+            "credential" : data2,
+            "states" : data3
         }
 
         return render(request, "OpioidData/add.html", context)

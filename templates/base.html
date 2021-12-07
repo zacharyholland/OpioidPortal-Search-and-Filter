@@ -20,6 +20,20 @@
         z-index: 2;
         
         }
+
+        h6 {
+            margin: 0px;
+            font-family: 'open sans';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 28px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.03em;
+            color: #000000;
+        }
+
 </style>
 <body>
 <!-- Navigation-->
@@ -47,16 +61,17 @@
 {% endblock %}
 <!-- Footer-->
 <!-- Footer-->
-<footer class="footer">
+<footer class="footer" style = "display:flex; justify-content: center;">
     <div class="row" style="justify-content: center; margin-top: 50px;">
         <div class = "footer1">
-            <div style="width: 80%; display:flex; ">
+            <hr style = "width: 100%">
+            <div style="width: 100%; display:flex; ">
                 <div style = "width:33%;">
                     <img src="{% static 'img/logo (4).png' %}" style ="width: 80%;">
                     <p style = "margin-top: 40px;">BYU Intex 2021</p>
                     <p>Section 2, Group 3</p>
                 </div>
-                <div class ="outer-footer-column">
+                <div class ="outer-footer-column" style = "width:33%">
                     <div style = "width:200px">
                         <h6>created by</h6>
                         <p style = "margin-top: 40px;">Bradford Huber</p>
@@ -66,7 +81,7 @@
                     </div>
                 </div>
                 
-                <div class = "outer-footer-column">
+                <div class = "outer-footer-column" style = "width:33%">
                     <div >
                         <h6>menu</h6>
                         <p style = "margin-top: 40px;">Prescribers</p>

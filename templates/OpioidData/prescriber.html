@@ -13,6 +13,17 @@
     <style>
 
     /* styles for accordion and graph */
+
+    .card3 {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 95%;
+        border-radius: 15px;
+        margin: 15px;
+        display: flex;
+        justify-content: center;
+    }
+
     .accordion {
       background-color: #FFFFFF;
       color: #444;
@@ -592,7 +603,7 @@
 <!--<a href="{% url 'addcredential' record.npi %}">
 <a href="{% url 'adddrug' record.npi %} ">-->
 <div style = "display: flex; justify-content: left;">
-    <div class="card" style = "width: 100%; display: block;">
+    <div class="card3" style = "width: 100%; display: block;">
             <div class="container3" style = "width: 95%; padding-top: 20px; padding-bottom: 20px;">
                 <div style = "width: 50%; ">
                     <h4 style = "margin:10px;">{{record.full_name}}</h4>
@@ -654,7 +665,7 @@
         <div class="column-names " style = "margin-left: 15px; margin-top: 5px; margin-bottom: 2px; box-shadow: none; ">
             
                 <div class="container3 " style = "width: 100%; margin-top: 20px;">
-                    <div style = "width: 40% ">
+                    <div style = "width: 60% ">
                         <p style = "margin:0px;">Drug Name</p>
                     </div>
                 
@@ -664,9 +675,7 @@
                     <div style = "width: 20%; text-align: center; margin: 0px;">
                         <p style = "margin:0px;">Avg Quantity</p>
                     </div>
-                    <div style = "width: 20%; text-align: center; margin: 0px;">
-                        <p style = "margin:0px;">View Graph</p>
-                    </div>
+                    
                     
                     
                 </div>
@@ -676,61 +685,32 @@
 </div>
 
 <!--Accordion-->
-{% for Drug in drugs %}
-<div>
+{% for Sum in sums %}
+<a href="{% url 'drug' Sum.drugname %}"><div>
     <div class="accordion card2">
         <div class="container3" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px;">
-            <div style = "width: 20% ">
-                <a href="{% url 'drug' Drug.drugname %}"><h4 style = "margin:5px; font-size: 18px;">{{Drug.drugname}}</h4></a>
+            <div style = "width: 40% ">
+                <h4 style = "margin:5px; font-size: 18px;">{{Sum.drugname}}</h4>
             </div>
             <div style="width:20%"></div>   
             <div style = "width: 20%; text-align: center; margin: 0px;">
-                <p>{{Drug.qty}}</p>
+                <p>{{Sum.id}}</p>
             </div>
             <div style = "width: 20%; text-align: center; margin: 0px;">
                 <p>
                     {% for Average in average %}
-                        {% if Average.drugname == Drug.drugname %}
+                        {% if Average.drugname == Sum.drugname %}
                             {{Average.id}}
                         {% endif %}
                     {% endfor %}
                 </p>
             </div>
-            <div style = "width: 20%; text-align: center;">
-                <img src="{% static "img/graph icon.png" %}" style = "height: 25px;">
-            </div>
             
         </div>
-    </div>
-        <div class="panel">
-            <div>
-                <div id="{{Drug.drugname}}" style="width: 100%; height: 400px; margin: 0 auto"></div>
-                <script language="JavaScript">
-                    var drugname = "{{Drug.drugname}}"
-                    var name = "{{Triple.prescriberid}}"
-                    var quantity = parseInt("{{Triple.qty}}");
+      
+        
+    </div></a>
 
-                    function drawChart() {
-                        /* Define the chart to be drawn.*/
-                        var data = google.visualization.arrayToDataTable([
-                            ['Drug Prescriptions Given', 'Number of Prescriptions'],
-                            [name, quantity],
-                            ['Average', 2000]
-                            
-                        ]);
-                        var options = {
-                            title: 'Drug Prescriptions Given',
-                            isStacked: true
-                        };
-                        /* Instantiate and draw the chart.*/
-                        var chart = new google.visualization.BarChart(document.getElementById( drugname ));
-                        chart.draw(data, options);
-                    }
-                    google.charts.setOnLoadCallback(drawChart);
-                </script>
-            
-            </div>
-        </div>
     </div>
     {% endfor %}
         <script>

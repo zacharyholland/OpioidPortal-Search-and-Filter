@@ -68,3 +68,11 @@ class Triple(models.Model):
 
     class Meta :
         db_table = "pd_triple"
+
+class State(models.Model) :
+    state = models.CharField(max_length=5)
+    class Meta :
+        db_table = "state"
+    
+    def __str__(self) :
+        return (self.state)

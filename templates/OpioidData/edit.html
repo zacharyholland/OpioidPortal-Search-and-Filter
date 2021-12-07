@@ -6,6 +6,18 @@
     <style>
 
       /* form css */
+          h6 {
+            margin: 0px;
+            font-family: 'open sans';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 28px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.03em;
+            color: #000000;
+        }
 
             * {box-sizing: border-box}
         
@@ -544,16 +556,16 @@
                 <label for="Gender"><b>Gender</b></label>
                 <div class="search_categories" style="width:100%">
                     <div class="select">
-                        <select name="Gender" id="Gender">
+                        <select name="Gender" id="Gender" required>
                         <option value="F" selected=
-                        {% if "{{record.Gender}}" == "F" %}
+                        {% if record.Gender == "F" %}
                         "selected"
                         {% else %}
                         ""
                         {% endif %}
                         >Female</option>
                         <option value="M" selected=
-                        {% if "{{record.Gender}}" == "M" %}
+                        {% if record.Gender == "M" %}
                         "selected"
                         {% else %}
                         ""
@@ -563,63 +575,21 @@
                     </div>
                 </div>
                    
-                <!--State-->   
+                <!--State-->
                 <label for="State"><b>State</b></label>
                 <div class="search_categories" style="width:100%">
                     <div class="select">
-                        <select id="State" name="State" required>
-                            <option value="--">--</option>
-                            <option value="AL">Alabama</option>
-                            <option value="AK">Alaska</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="AR">Arkansas</option>
-                            <option value="CA">California</option>
-                            <option value="CO">Colorado</option>
-                            <option value="CT">Connecticut</option>
-                            <option value="DE">Delaware</option>
-                            <option value="DC">District of Columbia</option>
-                            <option value="FL">Florida</option>
-                            <option value="GA">Georgia</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="ID">Idaho</option>
-                            <option value="IL">Illinois</option>
-                            <option value="IN">Indiana</option>
-                            <option value="IA">Iowa</option>
-                            <option value="KS">Kansas</option>
-                            <option value="KY">Kentucky</option>
-                            <option value="LA">Louisiana</option>
-                            <option value="ME">Maine</option>
-                            <option value="MD">Maryland</option>
-                            <option value="MA">Massachusetts</option>
-                            <option value="MI">Michigan</option>
-                            <option value="MN">Minnesota</option>
-                            <option value="MS">Mississippi</option>
-                            <option value="MO">Missouri</option>
-                            <option value="MT">Montana</option>
-                            <option value="NE">Nebraska</option>
-                            <option value="NV">Nevada</option>
-                            <option value="NH">New Hampshire</option>
-                            <option value="NJ">New Jersey</option>
-                            <option value="NM">New Mexico</option>
-                            <option value="NY">New York</option>
-                            <option value="NC">North Carolina</option>
-                            <option value="ND">North Dakota</option>
-                            <option value="OH">Ohio</option>
-                            <option value="OK">Oklahoma</option>
-                            <option value="OR">Oregon</option>
-                            <option value="PA">Pennsylvania</option>
-                            <option value="RI">Rhode Island</option>
-                            <option value="SC">South Carolina</option>
-                            <option value="SD">South Dakota</option>
-                            <option value="TN">Tennessee</option>
-                            <option value="TX">Texas</option>
-                            <option value="UT">Utah</option>
-                            <option value="VT">Vermont</option>
-                            <option value="VA">Virginia</option>
-                            <option value="WA">Washington</option>
-                            <option value="WV">West Virginia</option>
-                            <option value="WI">Wisconsin</option>
-                            <option value="WY">Wyoming</option></select>
+                        <select name="State" id="State" required>
+                        {% for State in state %}
+                        <option value="{{State.state}}" selected=
+                        {% if record.State == State.state %}
+                        "selected"
+                        {% else %}
+                        ""
+                        {% endif %}
+                        >{{State.state}}</option>
+                        {% endfor %}
+                        </select>
                     </div>
                 </div>
 
@@ -628,10 +598,10 @@
                 <label for="Specialty"><b>Specialty</b></label>
                 <div class="search_categories" style="width:100%">
                     <div class="select">
-                        <select name="Specialty" id="Specialty">
+                        <select name="Specialty" id="Specialty" required>
                         {% for Specialty in specialty %}
                         <option value="{{Specialty.specialty_type}}" selected=
-                        {% if "{{Specialty.specialty_type}}" == "{{record.specialty}}" %}
+                        {% if Specialty.specialty_type == record.specialty %}
                         "selected"
                         {% else %}
                           ""
@@ -646,16 +616,16 @@
                 <label for="IsOpioid"><b>Opioid Prescriber</b></label>
                 <div class="search_categories" style="width:100%">
                     <div class="select">
-                        <select name="IsOpioid" id="Opioid">
+                        <select name="IsOpioid" id="Opioid" required>
                         <option value="TRUE" selected=
-                        {% if "{{record.isopioid_prescriber}}" == "TRUE" %}
+                        {% if record.isopioid_prescriber == "TRUE" %}
                         "selected"
                         {% else %}
                         ""
                         {% endif %}
                         >Yes</option>
                         <option value="FALSE" selected=
-                        {% if "{{record.isopioid_prescriber}}" == "FALSE" %}
+                        {% if record.isopioid_prescriber == "FALSE" %}
                         "selected"
                         {% else %}
                         ""
