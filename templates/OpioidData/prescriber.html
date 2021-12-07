@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 <head>
+  <title>Prescriber Info</title>  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
@@ -729,5 +730,82 @@
               });
             }
         </script>
+
+        <div style = "margin-top: 50PX; width: 100%">
+          <div class = "row" style="display: flex; justify-content: left;">
+              <div style = "display: flex; justify-content: LEFT;">
+                  <div class = "column " style = "margin-left:15px; width: 100%;">
+                      <h2 style = " margin:0px; text-align: left; font-size: 24px;">Recommended Drugs</h2>
+              </div>
+          </div>
+          </div>
+      </div>
+      <!--Column Names-->
+      <div style = "width: 95%;">
+          <div style = "display: flex; justify-content: center;">
+              <div class="column-names " style = "margin-left: 15px; margin-top: 5px; margin-bottom: 2px; box-shadow: none; ">
+                  
+                      <div class="container3 " style = "width: 100%; margin-top: 20px;">
+                          <div style = "width: 100% ">
+                              <p style = "margin:0px;">Drug Name</p>
+                          </div>
+                          
+                          
+                          
+                      </div>
+                  
+              </div>
+          </div>
+      </div>
+      
+      <!--Accordion-->
+
+<div>
+  <div class="accordion card2">
+    <div class="container3" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px;">
+      <div style = "width: 100% ">
+        <h4 style = "margin:5px; font-size: 18px;">ABILIFY</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="accordion card2">
+    <div class="container3" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px;">
+      <div style = "width: 100% ">
+        <h4 style = "margin:5px; font-size: 18px;">BACLOFEN</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="accordion card2">
+    <div class="container3" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px;">
+      <div style = "width: 100% ">
+        <h4 style = "margin:5px; font-size: 18px;">CELEBREX</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="accordion card2">
+    <div class="container3" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px;">
+      <div style = "width: 100% ">
+        <h4 style = "margin:5px; font-size: 18px;">DIGOX</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="accordion card2">
+    <div class="container3" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px;">
+      <div style = "width: 100% ">
+        <h4 style = "margin:5px; font-size: 18px;">EXELON</h4>
+      </div>
+    </div>
+  </div>
+</div>
     </body>
+
+
 {% endblock %}

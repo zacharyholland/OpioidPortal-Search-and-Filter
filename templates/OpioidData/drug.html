@@ -6,6 +6,16 @@
     <style>
       /* form css */
 
+            .card3 {
+              box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              transition: 0.3s;
+              width: 95%;
+              border-radius: 15px;
+              margin: 15px;
+              display: flex;
+              justify-content: center;
+          }
+
             * {box-sizing: border-box}
         
             .search_categories{
@@ -359,7 +369,7 @@
     
 
     </style>
-     
+    <title>Drug Info</title>  
 </head>
 <body>
 
@@ -426,7 +436,7 @@
 </div>
 <!--Drug Card-->
 <div style = "display: flex; justify-content: left;">
-    <div class="card" style = "width: 95%">
+    <div class="card3" style = "width: 95%">
             <div class="container3" style = "width: 100%; padding-top: 20px; padding-bottom: 20px;">
                 <div style = "width: 50%; ">
                     <h4 style = "margin:10px;">{{ record.drugname }}</h4>
@@ -477,7 +487,7 @@
 <!--Prescriber Card-->
 {% for Triple in triple %}
 <div style = "display: flex; justify-content: center;">
-    <div class="card" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px; ">
+    <div class="card3" style = "margin-left: 15px; margin-top: 5px; margin-bottom: 5px; ">
       <!--href="{% url 'prescriber' 1992857577 %}" -->
         <a style = "width: 100%">
             <div class="container3">
