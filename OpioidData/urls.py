@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import addCredentialPageView, newDrugPageView, addDrugPageView, resourcesPageView, portalPageView, searchPrescribersPageView, searchDrugsPageView, addPageView, deletePageView, updatePageView, editPageView, trendsPageView, allPrescriberPageView, allDrugsPageView, singlePrescriberPageView, singleDrugPageView, indexPageView
+from .views import predictorPageView, addCredentialPageView, newDrugPageView, addDrugPageView, resourcesPageView, portalPageView, searchPrescribersPageView, searchDrugsPageView, addPageView, deletePageView, updatePageView, editPageView, trendsPageView, allPrescriberPageView, allDrugsPageView, singlePrescriberPageView, singleDrugPageView, indexPageView
 
 urlpatterns = [
+    path("predictor/", predictorPageView, name="predictor"),
     path("addcredential/<int:npi>", addCredentialPageView, name="addcredential"),
     path("newdrug/", newDrugPageView, name="newdrug"),
     path("searchprescribers/", searchPrescribersPageView, name="searchprescribers"),

@@ -265,3 +265,6 @@ def addCredentialPageView(request, npi) :
         }
 
         return render(request, "OpioidData/addcredential.html", context)
+
+def predictorPageView(request) :
+    return render(request, "OpioidData/predictor.html")
