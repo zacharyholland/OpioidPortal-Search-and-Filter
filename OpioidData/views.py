@@ -185,7 +185,7 @@ def searchPrescribersPageView(request) :
         state = request.POST['state']
         specialty = request.POST['specialty']
 
-        prescribers = Prescriber.objects.filter(npi__icontains=npi).filter(Fname__icontains=name).filter(Gender__icontains=gender).filter(isopioid_prescriber__icontains=opioid).filter(specialty__icontains=specialty).filter(State__icontains=state)
+        prescribers = Prescriber.objects.filter(npi__icontains=npi).filter(Q(Fname__icontains=name) | Q(Lname__icontains=name)).filter(Gender__icontains=gender).filter(isopioid_prescriber__icontains=opioid).filter(specialty__icontains=specialty).filter(State__icontains=state)
 
         context = {
             'prescribers' : prescribers
