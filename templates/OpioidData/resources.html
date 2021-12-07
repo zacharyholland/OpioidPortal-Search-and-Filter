@@ -1,10 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% block content %}
-<!--Empty Div to Move Content Down-->
-<div style = "margin-top: 50px;"></div>
-
+<head>
+    <title>Resources</title>  
+</head
 <!--Page Title  -->
-<div style = "display: flex; justify-content: center;">
+<div style = "display: flex; justify-content: center; margin-top: 150px;">
     <div class = "column " style = "margin-left:15px; width: 60%;">
         <h2 style = " margin:0px;">Resources</h2>
         <p style = "text-align: center;">Take a look at the following articles for helpful information regarding the opioid epidemic and what you can do to help.</p>
@@ -14,33 +14,100 @@
 
 <!--Resources Content-->
 <div style = "display: flex; justify-content: center;">
-    <div style = "background: linear-gradient(96.57deg, #E8F1FF 26.99%, #F3F8FF 79.73%); width: 80%; border-radius: 10px;" >
+    <div style = "background: linear-gradient(96.57deg, #E8F1FF 26.99%, #F3F8FF 79.73%); width: 80%; border-radius: 10px; max-width: 1200px;" >
         <div style = "display:block; padding: 50px;">
             
             <!--Resource Row-->
             <div style = "display:flex; margin-bottom: 100px;">
-                <div style = "width: 40%;padding: 20px;background-image: url(https://www.hhs.gov/careers/sites/default/files/styles/large/public/images/180627013115-hhs-seal.jpg?itok=t-9ojEcK); border-radius: 10px;" >
+                <div style = "width: 40%;padding: 20px;background-image: url(https://www.hhs.gov/careers/sites/default/files/styles/large/public/images/180627013115-hhs-seal.jpg?itok=t-9ojEcK); border-radius: 10px; background-repeat: no-repeat;
+                background-size: cover;" >
                     
                 </div>
                 <div style = "width: 60%; padding-right:20px; padding-left: 50px;">
                     <h4 style = margin:0px;>Opioid Overdose Prevention</h4>
                     <p>U.S. Surgeon General Jerome M. Adams, M.D., M.P.H., released a public health advisory  to urge more Americans to carry a potentially lifesaving medication that can reverse the effects of an opioid overdose. The medication, naloxone, is already carried by many first responders, such as EMTs and police officers.</p>
-                    <button style="padding-top:10px;" type="button" class="button" onclick = "window.location.href='https://www.hhs.gov/surgeongeneral/priorities/opioids-and-addiction/opioids-overdose-prevention/index.html'">Learn More</button>
+                    <button type="button" class="button" onclick = "window.location.href='https://www.hhs.gov/surgeongeneral/priorities/opioids-and-addiction/opioids-overdose-prevention/index.html'">Learn More</button>
                 </div>
             </div> 
             
             <!--Resource Row-->
             <div style = "display:flex; margin-bottom: 100px;">
                 <div style = "width: 40%;padding: 20px; background-repeat: no-repeat;
-                background-size: cover; background-image: url(img/filler.jpeg); border-radius: 10px;">
-                    
+                background-size: cover; background-image: url(https://static.politico.com/dims4/default/580edf1/2147483647/resize/1160x%3E/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F71%2F7a%2Feadb4be04117a11930d392fb6f52%2F20200315-cdc-sign-ap-773.jpg); border-radius: 10px;"> 
                 </div>
                 <div style = "width: 60%; padding-right:20px; padding-left: 50px;">
                     <h4 style = margin:0px;>Understanding the Epidemic </h4>
                     <p>The number of drug overdose deaths increased by nearly 5% from 2018 to 2019 and has quadrupled since 19991.  Over 70% of the 70,630 deaths in 2019 involved an opioid. From 2018 to 2019, there were significant changes in opioid-involved death rates:</p>
-                    <button style="padding-top:10px;" type="button" class="button" onclick = "window.location.href='https://www.cdc.gov/opioids/basics/epidemic.html'">Learn More</button>
+                    <button type="button" class="button" onclick = "window.location.href='https://www.cdc.gov/opioids/basics/epidemic.html'">Learn More</button>
                 </div>
             </div> 
+
+          
+
+            <!--Resource Row-->
+            <div style = "display:flex; margin-bottom: 100px;">
+                <div style = "width: 40%;padding: 20px; background-repeat: no-repeat;
+                background-size: cover; background-image: url(https://i2.wp.com/www.directrelief.org/wp-content/uploads/naloxone.jpg?w=1389&crop=0%2C0px%2C100%2C926px&ssl=1); border-radius: 10px;">
+                    
+                </div>
+                <div style = "width: 60%; padding-right:20px; padding-left: 50px;">
+                    <h4 style = margin:0px;>Naloxone For All </h4>
+                    <p>Naloxone is a medicine that rapidly reverses an opioid overdose. It is an opioid antagonist. This means that it attaches to opioid receptors and reverses and blocks the effects of other opioids. </p>
+                    <button type="button" class="button" onclick = "window.location.href='https://www.naloxoneforall.org/'">Learn More</button>
+                </div>
+            </div> 
+
+            <!--Resource Row-->
+            <div style = "display:flex; margin-bottom: 100px;">
+                <div style = "width: 40%;padding: 20px; background-repeat: no-repeat;
+                background-size: cover; background-image: url(https://www.cdc.gov/rxawareness/images/twitter-highres/11008_CDC_RxAwareness_SocialMedia_Twitter_Billboard-v01-medium.jpg?_=17773); border-radius: 10px;">
+                    
+                </div>
+                <div style = "width: 60%; padding-right:20px; padding-left: 50px;">
+                    <h4 style = margin:0px;>Real Stories of Opioid Addictoin </h4>
+                    <p>These graphics are optimized for Twitter and feature Rx Awareness campaign participants and key messages. Use this content to spread the word. To find graphics optimized for Facebook, see Facebook Images.</p>
+                    <button type="button" class="button" onclick = "window.location.href='https://www.cdc.gov/rxawareness/resources/twitter.html'">Learn More</button>
+                </div>
+            </div> 
+
+            <!--Resource Row-->
+            <div style = "display:flex; margin-bottom: 100px;">
+                <div style = "width: 40%;padding: 20px; background-repeat: no-repeat;
+                background-size: cover; background-image: url(https://bcbstnews.com/wp-content/uploads/2019/04/pills-1170x628.jpg); border-radius: 10px;">
+                    
+                </div>
+                <div style = "width: 60%; padding-right:20px; padding-left: 50px;">
+                    <h4 style = margin:0px;>Opioid laws, policies and prescription limits by state </h4>
+                    <p>Opioids are a class of drugs that are derived from the opium poppy (or, in the case of pharmaceuticals, made synthetically) and bind to nerve cells, inhibiting pain signals. Vicodin, OxyContin, and morphine are all examples of opioids. On November 1, 2011, the Centers for Disease Control and Prevention (CDC) issued a press release stating that overdoses from prescription opioid painkillers had reached epidemic levels.</p>
+                    <button type="button" class="button" onclick = "window.location.href='https://ballotpedia.org/Opioid_prescription_limits_and_policies_by_state'">Learn More</button>
+                </div>
+            </div> 
+
+            <!--Resource Row-->
+            <div style = "display:flex; margin-bottom: 100px;">
+                <div style = "width: 40%;padding: 20px; background-repeat: no-repeat;
+                background-size: cover; background-image: url(https://i2.wp.com/www.directrelief.org/wp-content/uploads/naloxone.jpg?w=1389&crop=0%2C0px%2C100%2C926px&ssl=1); border-radius: 10px;">
+                    
+                </div>
+                <div style = "width: 60%; padding-right:20px; padding-left: 50px;">
+                    <h4 style = margin:0px;>Naloxone prescription mandates</h4>
+                    <p>Naloxone is a medicine that rapidly reverses an opioid overdose. It is an opioid antagonist. This means that it attaches to opioid receptors and reverses and blocks the effects of other opioids.</p>
+                    <button type="button" class="button" onclick = "window.location.href='https://www.networkforphl.org/wp-content/uploads/2020/10/Fact-Sheet-Naloxone-Prescription-Mandates.pdf'">Learn More</button>
+                </div>
+            </div>
+
+            <!--Resource Row-->
+            <div style = "display:flex; margin-bottom: 100px;">
+                <div style = "width: 40%;padding: 20px; background-repeat: no-repeat;
+                background-size: cover; background-image: url(https://www.healio.com/~/media/slack-news/infectious-disease/misc/other/fdasign_323811316.jpg?h=630&w=1200&la=en&hash=001B90A9258A892E5BA5583135C067F5); border-radius: 10px;">
+                    
+                </div>
+                <div style = "width: 60%; padding-right:20px; padding-left: 50px;">
+                    <h4 style = margin:0px;>Naloxone prescription mandates</h4>
+                    <p>To reduce the risk of death from opioid overdose, the U.S. Food and Drug Administration (FDA) is making the following recommendations about the opioid reversal medicine, naloxone:</p>
+                    <button type="button" class="button" onclick = "window.location.href='https://www.fda.gov/media/140360/download'">Learn More</button>
+                </div>
+            </div>
             
 
             
